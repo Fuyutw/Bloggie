@@ -97,14 +97,17 @@
             let data = new FormData();
             data.append('file', e.target.files[0]);
 
-            await fetch('/api/images', {
+            await fetch('/api/images/UploadAsync', {
                 method: 'POST',
                 headers: {
                     'Accept': '*/*',
                 },
                 body: data
-            }).then(response => response.json())
-                .then(result => {
+            }).then(response1 => {
+                console.log('Response:', response1); // 將整個響應印出來
+                return response1.json();
+            }).then(result => {
+                console.log('Result:', result);
                     featuredImageUrlElement.value = result.link;     
                     featuredImageDisplayElement.src = result.link;
                     featuredImageDisplayElement.style.display = 'block';

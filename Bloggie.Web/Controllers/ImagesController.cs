@@ -5,7 +5,7 @@ using System.Net;
 
 namespace Bloggie.Web.Controllers
 {
-    [Route("api/[controller]")]
+    
     [ApiController]
     
     public class ImagesController : ControllerBase
@@ -18,15 +18,15 @@ public IActionResult Index()
 {
 return Ok("this is the GET Images API call");
 }*/
-
+        
         public ImagesController(IImageRespository imageRespository)
         {
             this.imageRespository = imageRespository;
         }
-
-
+        [Route("api/images")]
+        [Route("api/images/UploadAsync")]
         [HttpPost]
-        public async Task<IActionResult> UploadAsync(IFormFile file)
+        public async Task<IActionResult> UploadAsync1126(IFormFile file)
         {
             // call a repository
             var imageURL = await imageRespository.UploadAsync(file);
